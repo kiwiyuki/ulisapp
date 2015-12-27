@@ -1,0 +1,11 @@
+//= require jquery
+//= require jquery_ujs
+//= require_tree ../../../vendor/assets/javascripts/.
+
+// wait for the DOM to be loaded
+$(document).ready(function() {
+    // bind 'myForm' and provide a simple callback function
+    $('#new_participant').ajaxForm(function() {
+        alert("Thank you for your comment!");
+    });
+});

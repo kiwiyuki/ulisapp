@@ -1,0 +1,44 @@
+<%= javascript_include_tag 'delete_participant' %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @event.event_name %>
+</p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= @event.event_date %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @event.summary %>
+</p>
+
+<%= button_to 'Join this event', :action => 'new_participant' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grade</th>
+      <th>Name</th>
+      <th>comment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event.participants.order("grade ASC").each do |participant| %>
+      <tr id="participant_<%= participant.id %>">
+        <td><%= participant.grade %></td>
+        <td><%= participant.name %></td>
+        <td><%= participant.comment %></td>
+        <td><%= link_to 'update', edit_participant_path(participant) %></td>
+        <td><%= link_to 'cancel', participant, method: :delete, class: 'participant_delete', remote: true %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', events_path %>
