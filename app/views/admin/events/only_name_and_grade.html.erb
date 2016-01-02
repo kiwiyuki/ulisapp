@@ -1,0 +1,43 @@
+<%= javascript_include_tag 'delete_participant' %>
+<%- model_class = Event -%>
+<div class="page-header">
+    <h1><%=t '.title', :default => @event.event_name %></h1>
+    <% if @event.reception %>
+        <%= button_to '受付を終了する', admin_fin_path, class: 'btn btn-success btn-sm' %>
+    <% else %>
+        <%= button_to '受付を開始する', admin_start_path, class: 'btn btn-success btn-sm' %>
+    <% end %>
+</div>
+
+<dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:event_date) %>:</strong></dt>
+    <dd><%= @event.event_date %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:summary) %>:</strong></dt>
+    <dd><%= simple_format(@event.summary) %></dd>
+</dl>
+
+<% if @event.reception %>
+    <%= button_to 'New', admin_join_path, :class => 'btn btn-primary' %>
+<% end %>
+</br>
+
+<p class="text-danger"><%= "現在、" + @event.participants.order("grade ASC").count.to_s + "人参加中" %></p>
+
+<%= button_to '全てを表示する', admin_event_path(@event), method: :get,:class => 'btn btn-success btn-sm pull-right' %>
+</br>
+
+<% grade_list = ["1年","2年","3年","4年","Master","Doctor"] %>
+<% grade_list.each do |grade| %>
+    <% first_frg = 1 %>
+    <% @event.participants.where("grade = '#{grade}'").each do |participant| %>
+        <% if first_frg == 1 %>
+            <p><%= participant.grade %></p>
+            <% first_frg = 0 %>
+        <% end %>
+        <p><%= participant.name %></p>
+    <% end %>
+    </br>
+<% end %>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+admin_events_path, :class => 'btn btn-default'  %>

@@ -26,7 +26,7 @@ class ParticipantsController < ApplicationController
   def create
       @participant = Participant.new(participant_params)
       if @participant.save
-          redirect_to event_path(@participant[:event_id]), notice: 'Participant was successfully created.'
+          redirect_to event_path(@participant[:event_id]), notice: 'イベントに参加しました。'
       else
       render action: new
       end
@@ -36,7 +36,7 @@ class ParticipantsController < ApplicationController
   # PATCH/PUT /participants/1.json
   def update
       if @participant.update(participant_params)
-        redirect_to event_path(@participant[:event_id]), notice: 'Participant was successfully updated.'
+        redirect_to event_path(@participant[:event_id]), notice: '編集が完了しました。'
       else
         render action: 'edit'
       end
@@ -45,11 +45,12 @@ class ParticipantsController < ApplicationController
   # DELETE /participants/1
   # DELETE /participants/1.json
   def destroy
-    id = params[:id]
-    #event = Participant.find(params[:id])[:event_id]
+    event = Participant.find(params[:id])[:event_id]
     @participant.destroy
-    #redirect_to event_path(:id => event), notice: 'You canceled join this event.'
-    render :json => {:delete_participant => id}
+    redirect_to event_path(:id => event), notice: 'イベントへの参加を取り消しました。'
+    #id = params[:id]
+    #@participant.destroy
+    #render :json => {:delete_participant => id}
   end
 
   private

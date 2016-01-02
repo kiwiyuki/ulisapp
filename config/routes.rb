@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   root 'events#index'
-  post 'event/:id/new_participant' => 'events#new_participant'
+  post 'event/:id/new_participant' => 'events#new_participant', :as => 'join'
   resources :events, only: %w(index show new_participant)
   resources :participants
   
   namespace :admin do
       root 'events#index'
       resources :events
+      post 'event/:id/new_participant' => 'events#new_participant', :as => 'join'
+      post 'event/:id/start' => 'events#start', :as => 'start'
+      post 'event/:id/fin' => 'events#fin', :as => 'fin'
+      post 'event/:id/only_name_and_grade' => 'events#only_name_and_grade', :as => 'only'
+      resources :participants
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

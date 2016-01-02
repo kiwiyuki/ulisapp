@@ -1,0 +1,10 @@
+<%= simple_form_for [:admin, @participant], wrapper: "horizontal_form", :html => { :class => 'form-horizontal' } do |f| %>
+    <%= f.input :name, required: true, input_wrapper_html: { class: "col-xs-2" } %>
+    <%= f.input :grade, as: :select, required: true, collection: [["1年","1年"],["2年","2年"],["3年","3年"],["4年","4年"],["Master","Master"],["Doctor","Doctor"]], input_wrapper_html: { class: "col-xs-2" } %>
+    <%= f.input :comment, input_wrapper_html: { class: "col-xs-5" } %>
+    <%= f.input :event_id, as: :hidden, :value => @participant[:event_id] %>
+
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), event_path(@participant[:event_id]), :class => 'btn btn-default pull-right' %>
+    <%= f.button :submit, "complete", :class => 'btn-primary pull-right' %>
+
+<% end %>

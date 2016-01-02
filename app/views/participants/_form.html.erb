@@ -1,29 +1,14 @@
-<%= form_for @participant, html: {id: 'join_form'} do |f| %>
-  <% if @participant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
+<%= simple_form_for @participant, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= error_span(@participant[:name]) %>
+  <%= f.input :grade %>
+  <%= error_span(@participant[:grade]) %>
+  <%= f.input :comment %>
+  <%= error_span(@participant[:comment]) %>
+  <%= f.input :event_id %>
+  <%= error_span(@participant[:event_id]) %>
 
-      <ul>
-      <% @participant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :grade %><br>
-    <%= f.text_field :grade %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                participants_path, :class => 'btn btn-default' %>
 <% end %>

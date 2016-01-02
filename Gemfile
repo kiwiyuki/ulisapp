@@ -32,6 +32,24 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# less(CSS)対応（後述LESSを使う場合）
+gem 'less-rails'
+# JavaScript のエンジンである v8 を Ruby から使えるようにする
+gem 'therubyracer'
+# JavaScriptコードを実行するためのエンジン
+gem 'execjs'
+
+# Twitter社が提供しているCSSとJavaScriptのフレームワーク
+gem 'twitter-bootstrap-rails'
+
+# シンプルフォーム
+gem 'simple_form'
+
+# 日時を操作するためのライブラリ
+gem 'momentjs-rails'
+# DateTimePicker
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
