@@ -17,8 +17,8 @@
 
 「その他」
     サーバ環境変数で
-        ULIS_USER
-        ULIS_PASS
+        NORMAL_USER
+        NORMAL_PASS
         ADMIN_USER
         ADMIN_PASS
     を設定する。

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
   def basic
       authenticate_or_request_with_http_basic do |user, pass|
-          user == ENV['ULIS_USER'] && pass == ENV['ULIS_PASS']
+          user == ENV['NORMAL_USER'] && pass == ENV['NORMAL_PASS']
       end
   end
 end
