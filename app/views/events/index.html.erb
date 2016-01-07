@@ -17,12 +17,14 @@
         <td><%= event.event_name %></td>
         <td><%= event.event_date %></td>
         <% if event.reception %>
-            <td><p class="text-success">参加者受付中</p></td>
+            <td><p class="text-success">受付中</p></td>
         <% else %>
-            <td><p class="text-muted">参加者受付終了</p></td>
+            <td><p class="text-muted">受付終了</p></td>
         <% end %>
         <td><%= button_to '詳細', event_path(event), :method => :get, :class => 'btn btn-info btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+</br>

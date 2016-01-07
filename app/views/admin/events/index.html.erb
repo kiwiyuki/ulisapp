@@ -18,9 +18,9 @@
         <td><%= event.event_name %></td>
         <td><%= event.event_date %></td>
         <% if event.reception %>
-            <td><p class="text-success">参加者受付中</p></td>
+            <td><p class="text-success">受付中</p></td>
         <% else %>
-            <td><p class="text-muted">参加者受付終了</p></td>
+            <td><p class="text-muted">受付終了</p></td>
         <% end %>
         <td><%= link_to '詳細', admin_event_path(event), :class => 'btn btn-info btn-xs' %>
             <%= link_to '編集', edit_admin_event_path(event), :class => 'btn btn-xs btn-default' %>
@@ -30,6 +30,8 @@
   </tbody>
 </table>
 
-<br>
+</br>
 
 <%= link_to 'New', new_admin_event_path, :class => 'btn btn-primary' %>
+
+</br>
