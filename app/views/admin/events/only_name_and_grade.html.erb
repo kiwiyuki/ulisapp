@@ -28,6 +28,7 @@
 
 <% grade_list = ["1年","2年","3年","4年","Master","Doctor"] %>
 <% grade_list.each do |grade| %>
+    <div class="container">
     <% first_frg = 1 %>
     <% @event.participants.where("grade = '#{grade}'").each do |participant| %>
         <% if first_frg == 1 %>
@@ -37,6 +38,7 @@
         <p><%= participant.name %></p>
     <% end %>
     </br>
+    </div>
 <% end %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
